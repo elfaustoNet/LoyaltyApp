@@ -1,0 +1,10 @@
+/unpackaged
+# Ignore OS system files that are usually auto-added to directories
+.DS_Store
+
+# Ignore Salesforce DX config files
+.sfdx
+.salesforce
+
+# Ignore VSCode config files
+.vscode

@@ -1,0 +1,62 @@
+<aura:component controller="LoyaltyMembersController" implements="force:appHostable, flexipage:availableForAllPageTypes">
+    
+    <aura:attribute name="members" type="Object[]"/>
+    <!-- Attribute to display the information of selected member -->
+    <aura:attribute name="memberData" type="Object"/>
+    <!-- attribute of columns to build for displaying member table -->
+    <aura:attribute name="columns" type="Object"/>
+
+    <!-- handler to initialize the lightning component --> 
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <!-- Event registers for when loyalty member is selected or create new button clicked -->
+    <aura:registerEvent name="createLoyaltyMember" type="c:CreateLoyaltyMember" /> 
+    <aura:registerEvent name="loyaltyMemberSelected" type="c:LoyaltyMemberSelection"/>
+    <!-- Exposes the reinitialization method to other components -->
+    <aura:method name="refreshData" action="{!c.doInit}"  access="PUBLIC">
+    </aura:method>
+
+    
+    <lightning:card title="Loyalty Viewer" iconName="standard:reward">
+        <!-- set buttons for the lightning card -->
+        <aura:set attribute="actions">
+            <lightning:button label="New Member" onclick="{!c.createNewMember}" />
+        </aura:set> 
+        <!-- used to add margin so table doesn't run all the way to component edges -->
+        <div class="slds-m-around_small">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                  <tr class="slds-text-title_caps">
+                        <!-- Iterate through the columns list to build table header -->
+                        <aura:iteration items="{!v.columns}" var="column">
+                            <th scope="col">
+                                <div class="slds-truncate" title="{!column.label}">{!column.label}</div>
+                            </th>  
+                         </aura:iteration>
+                    </tr>
+                </thead>
+                <tbody>  
+                    <!-- Iterate through members to display records -->
+                    <aura:iteration items="{!v.members}" var="member">
+                        <tr>
+                            <!-- Iterate through each field to determine how to display -->
+                            <aura:iteration items="{!member.memberFields}" var="field">
+                                <aura:if isTrue="{!field.fieldDisplayed}">
+                                    <td data-label="{!field.fieldLabel}">
+                                        <aura:if isTrue="{!field.fieldName == '_id' ? true : false}">
+                                            <div class="slds-truncate" title="{!field.fieldValueString}">
+                                                <a aura:id="thelink" href="javascript:void(0)" onclick="{!c.loyaltyMemberSelected}" data-fieldValue="{!field.fieldValueString}">{!field.fieldValueString}</a>
+                                            </div>
+                                        </aura:if>
+                                        <aura:if isTrue="{!field.fieldName != '_id' ? true : false}">
+                                            <div class="slds-truncate" title="{!field.fieldValueString}">{!field.fieldValueString}</div>
+                                        </aura:if>
+                                    </td>
+                                </aura:if>
+                            </aura:iteration>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </lightning:card>
+</aura:component>	

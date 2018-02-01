@@ -1,0 +1,39 @@
+<aura:component controller="LoyaltyViewerController" implements="force:appHostable, flexipage:availableForAllPageTypes">
+    
+   <!--Attribute to store member info -->
+    <aura:attribute name="member" type="Object"/>
+    <!-- ID of the member selected -->
+    <aura:attribute name="loyaltyId" type="String" access="private"/>
+    <!-- Determines whether to make the components editable when edit button click-->
+    <aura:attribute name="editable" type="boolean" default="false"/>
+    <!-- Flag to note that it's creation process -->
+    <aura:attribute name="createMember" type="boolean" default="false"/> 
+    <!-- Event to send save message -->
+    <aura:registerEvent name="memberUpdated" type="c:LoyaltyMemberUpdated"/>
+    <!-- Method, since public, is exposed to parent component. It can then call method from parent component. 
+        In this case, it's to populate the member with information from the selected one -->
+        <aura:method name="populateMember" action="{!c.populateMember}"  access="PUBLIC">
+            <aura:attribute name="loyaltySelected" type="String"/>
+        </aura:method>
+    <!-- Method, since public, is exposed to parent component. It can then call method from parent component. 
+        In this case, it's to initliaze an empty member in order to populate and create -->
+        <aura:method name="initializeNewMember" action="{!c.initializeMemberCreation}"  access="PUBLIC">
+        </aura:method>
+
+    <lightning:card title="Member Details All Dynamic" class="slds-hide" aura:id="memberDetailsCard">
+        <aura:set attribute="actions">
+            <lightning:button aura:id="editMemberBtn" label="Edit Member" onclick="{!c.setEditable}" class="slds-hide" />
+            <lightning:button aura:id="addPointsBtn" label="Add Points" class="slds-hide"/>
+            <lightning:button aura:id="createMemberBtn" label="Create Member" onclick="{!c.createMember}" class="slds-hide" variant="brand"/>
+            <lightning:button aura:id="saveBtn" label="Save" class="slds-hide" variant="brand" onclick="{!c.editMember}"/>
+            <lightning:button aura:id="cancelBtn" label="Cancel" onclick="{!c.cancelEdit}" class="slds-hide"/>
+        </aura:set> 
+        <div class="slds-m-around_small">
+        <aura:iteration items="{!v.member.memberFields}" var="field">
+            <aura:if isTrue="{!field.fieldDisplayed}">
+                <lightning:input label="{!field.fieldLabel}" name="{!field.fieldLabel}" disabled="{! v.editable == false ? true : field.fieldDisabled == true ? true : false }" type="{!field.fieldType}" value="{!field.fieldValueString}"/>
+            </aura:if>
+        </aura:iteration>
+        </div>
+    </lightning:card>
+</aura:component>	

@@ -1,0 +1,74 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "Member__mdt",
+                "referenceId": "Member__mdtRef1"
+            },
+            "DeveloperName": "LastName",
+            "MasterLabel": "LastName",
+            "Field_Displayed__c": true,
+            "Field_Editable__c": true,
+            "Field_Label__c": "Last Name",
+            "Field_Name__c": "lastname",
+            "Field_Type__c": "text",
+            "Sort_Order__c": 3
+        },
+        {
+            "attributes": {
+                "type": "Member__mdt",
+                "referenceId": "Member__mdtRef2"
+            },
+            "DeveloperName": "Phone",
+            "MasterLabel": "Phone",
+            "Field_Displayed__c": true,
+            "Field_Editable__c": false,
+            "Field_Label__c": "Phone",
+            "Field_Name__c": "phone",
+            "Field_Type__c": "text",
+            "Sort_Order__c": 5
+        },
+        {
+            "attributes": {
+                "type": "Member__mdt",
+                "referenceId": "Member__mdtRef3"
+            },
+            "DeveloperName": "FirstName",
+            "MasterLabel": "FirstName",
+            "Field_Displayed__c": true,
+            "Field_Editable__c": true,
+            "Field_Label__c": "First Name",
+            "Field_Name__c": "firstname",
+            "Field_Type__c": "text",
+            "Sort_Order__c": 2
+        },
+        {
+            "attributes": {
+                "type": "Member__mdt",
+                "referenceId": "Member__mdtRef4"
+            },
+            "DeveloperName": "Email",
+            "MasterLabel": "Email",
+            "Field_Displayed__c": true,
+            "Field_Editable__c": true,
+            "Field_Label__c": "Email",
+            "Field_Name__c": "email",
+            "Field_Type__c": "text",
+            "Sort_Order__c": 4
+        },
+        {
+            "attributes": {
+                "type": "Member__mdt",
+                "referenceId": "Member__mdtRef5"
+            },
+            "DeveloperName": "Id",
+            "MasterLabel": "Id",
+            "Field_Displayed__c": true,
+            "Field_Editable__c": false,
+            "Field_Label__c": "Id",
+            "Field_Name__c": "_id",
+            "Field_Type__c": "text",
+            "Sort_Order__c": 1
+        }
+    ]
+}

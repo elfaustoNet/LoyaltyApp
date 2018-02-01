@@ -1,0 +1,12 @@
+<aura:component implements="force:appHostable, flexipage:availableForAllPageTypes">
+    <!--This is the main component --> 
+    <!-- Handlers to receive the component level events  of when the create loyalty member button was clicked , a loyalty member was selected and a loyalty member was created/saved --> 
+    <aura:handler name="createLoyaltyMember" event="c:CreateLoyaltyMember" action="{!c.onCreateMember}" />
+    <aura:handler name="loyaltyMemberSelected" event="c:LoyaltyMemberSelection" action="{!c.onMemberSelected}" />
+    <aura:handler name="memberUpdated" event="c:LoyaltyMemberUpdated" action="{!c.onMemberUpdate}"/>
+
+    <!-- LoyaltyMember component displays list of members --> 
+    <c:LoyaltyMembers aura:id="loyaltyMembers"/>
+    <!-- Loyalty View used to view details and update Loyalty Member -->
+    <c:LoyaltyViewer aura:id="loyaltyViewer" />
+</aura:component>	
